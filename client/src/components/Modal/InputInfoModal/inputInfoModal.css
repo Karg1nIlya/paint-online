@@ -1,0 +1,56 @@
+.input-info-modal {
+    width: 30rem;
+    height: auto;
+    background-color: white;
+    position: relative;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.input-info-modal__header {
+    width: 100%;
+    padding: 1.2rem;
+    border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.input-info-modal__title {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.input-info-modal__content {
+    width: 100%;
+    padding: 1rem 1.2rem;
+}
+
+.input-info-modal__input {
+    width: 70%;
+    padding: 0.2rem;
+    outline: none;
+}
+
+.input-info-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 1.2rem;
+    border-top: 1px solid rgb(184, 184, 184);
+}
+
+.input-info-modal__entry-btn, .input-info-modal__entry-btn--disabled {
+    width: 7rem;
+    height: 1.5rem;
+    border: 1px solid grey;
+    letter-spacing: 1px;
+    background-color: rgb(148, 148, 148);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}  
+
+.input-info-modal__entry-btn:hover {
+    background-color: rgb(147, 137, 137);
+}
+
+.input-info-modal__entry-btn--disabled {
+    cursor: auto;
+    background-color: rgb(204, 204, 204);
+}

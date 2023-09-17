@@ -1,0 +1,38 @@
+.modal {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 1000;
+    animation-duration: 300ms;
+}
+
+.modal__wrapper {
+    position: relative;
+    margin: 6.5rem 0 1.25rem 0;
+    display: flex;
+    justify-content: center;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.5s;
+}
+
+@keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+@keyframes slide-in {
+    from {
+        transform: translateY(-9.4rem);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
