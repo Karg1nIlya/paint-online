@@ -29,7 +29,6 @@ export const canvasReducer = (state = initialStateCanvas, action: IAction) => {
                     if(state.canvas) {
                         context?.clearRect(0, 0, state.canvas?.width, state.canvas?.height);
                         context?.drawImage(img, 0, 0, state.canvas?.width, state.canvas?.height);
-                        // console.log(state)
                     }
                 };
             } else {
@@ -54,7 +53,6 @@ export const canvasReducer = (state = initialStateCanvas, action: IAction) => {
                     }
                 };
             }
-            // console.log(state)
             return { ...state };
         };
 
