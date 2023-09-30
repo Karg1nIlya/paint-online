@@ -47,7 +47,6 @@ module.exports = {
     devServer: {
         port: '3000',
         open: true,
-        // hot: true,
         liveReload: true,
     }, 
 
@@ -87,11 +86,6 @@ module.exports = {
                     }
                 ]
             },
-
-            // {
-            //     test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            //     type: 'asset/resource',
-            //   },
 
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,

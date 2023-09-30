@@ -5,7 +5,6 @@ class paintController {
 
     setImage(req, res) {
         try {
-            // console.log(path.resolve(__dirname.replace('\controllers', '')))
             const data = req.body.img.replace(`data:image/png;base64,`, '')
             fs.writeFileSync(path.resolve(__dirname.replace('\controllers', ''), 'files', `${req.query.id}.jpg`), data, 'base64')
             return res.status(200).json({message: 'Download success'})
@@ -26,6 +25,5 @@ class paintController {
         }
     }
 }
-
 
 module.exports = new paintController()

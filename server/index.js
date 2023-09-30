@@ -1,7 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-// const fs = require('fs')
-// const path = require('path')
 const router = require('./router')
 
 const app = express()
@@ -15,7 +13,6 @@ app.use(cors({
 })) 
 
 app.use('/api', router)
-// app.use('/api', router)
 
 const PORT = 9001
 
@@ -43,17 +40,6 @@ const start = async () => {
         console.log(e)
     }
 }
-
-// app.post('/image', (req, res) => {
-//     try {
-//         const data = req.body.img.replace(`data:image/png;base64,`, '')
-//         fs.writeFileSync(path.resolve(__dirname, 'files', `${req.query.id}.jpg`), data, 'base64')
-//         return res.status(200).json({message: "Загружено"})
-//     } catch (e) {
-//         console.log(e)
-//         return res.status(500).json('error')
-//     }
-// })
 
 const broadcastConnection = (ws, msg) => {
     aWss.clients.forEach(client => {

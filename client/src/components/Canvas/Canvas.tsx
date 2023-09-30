@@ -73,6 +73,22 @@ export function Canvas() {
         });
     }, []);
 
+    // useEffect(()=>{
+    //     dispatch(setCanvas(actionTypes.SET_CANVAS, canvasRef.current!));
+    //     let context = canvasRef.current!.getContext('2d')
+    //     axios.get(`http://localhost:9001/api/image?id=${params.id}`)
+    //     .then((result) => {
+    //         const img = new Image();
+    //         img.src = result.data;
+    //         img.onload = () => {
+    //             context!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+    //             context!.drawImage(img, 0, 0, canvasRef.current!.width, canvasRef.current!.height);
+    //         }
+    //     }).catch((err) => {
+    //         console.log(err);
+    //     });
+    // }, [canvasState.redoList, canvasState.undoList]);
+
     const drawHandler = (msg: IWSMassage) => {
         const figure = msg.figure;
         const context = canvasRef.current?.getContext('2d');
@@ -95,7 +111,6 @@ export function Canvas() {
                 if(context) {
                     Rect.staticDraw(figure.x1!, figure.y1!, figure.x2!, figure.y2!, context, figure.color, figure.lineWidth)
                 }
-                context?.beginPath();
                 break;
             };
 
@@ -103,7 +118,6 @@ export function Canvas() {
                 if(context) {
                     Circle.staticDraw(figure.x1!, figure.y1!, figure.r!, context, figure.color, figure.lineWidth)
                 }
-                context?.beginPath();
                 break;
             };
 
@@ -126,7 +140,6 @@ export function Canvas() {
 
     const onMouseUpHandler = () => {
         if(canvasRef.current !== null) {
-            dispatch(pushToUndo(actionTypes.PUSH_TO_UNDO, canvasRef.current.toDataURL()));
             setTimeout(()=> {
                 if(canvasRef.current !== null) {
                     axios.post(`http://localhost:9001/api/image?id=${params.id}`, {img: canvasRef.current.toDataURL()})
@@ -140,6 +153,12 @@ export function Canvas() {
         }
     };
 
+    const onMouseDownHandler = () => {
+        if(canvasRef.current !== null) {
+            dispatch(pushToUndo(actionTypes.PUSH_TO_UNDO, canvasRef.current.toDataURL()));
+        }
+    };
+
     return (
         <>
             {modalVisible && 
@@ -148,7 +167,7 @@ export function Canvas() {
                 </Modal>
             }
             <div className="canvas">
-                <canvas onMouseUp={onMouseUpHandler} ref={canvasRef} width='1000px' height='800px'></canvas>
+                <canvas onMouseUp={onMouseUpHandler} onMouseDown={onMouseDownHandler} ref={canvasRef} width='1000px' height='800px'></canvas>
             </div>
         </>
     );

@@ -22,13 +22,14 @@ export const canvasReducer = (state = initialStateCanvas, action: IAction) => {
             let context = state.canvas?.getContext('2d');
             if(state.undoList.length > 0) {
                 let dataUrl = state.undoList.pop() as string;
+                state.redoList.push(state.canvas!.toDataURL());
                 let img = new Image();
                 img.src = dataUrl;
                 img.onload = () => {
                     if(state.canvas) {
-                        state.redoList.push(state.canvas.toDataURL());
                         context?.clearRect(0, 0, state.canvas?.width, state.canvas?.height);
                         context?.drawImage(img, 0, 0, state.canvas?.width, state.canvas?.height);
+                        // console.log(state)
                     }
                 };
             } else {
@@ -36,7 +37,6 @@ export const canvasReducer = (state = initialStateCanvas, action: IAction) => {
                     context?.clearRect(0, 0, state.canvas?.width, state.canvas?.height);
                 }
             }
-            console.log(state)
             return { ...state };
         };
 
@@ -44,17 +44,17 @@ export const canvasReducer = (state = initialStateCanvas, action: IAction) => {
             let context = state.canvas?.getContext('2d');
             if(state.redoList.length > 0) {
                 let dataUrl = state.redoList.pop() as string;
+                state.undoList.push(state.canvas!.toDataURL());
                 let img = new Image();
                 img.src = dataUrl;
                 img.onload = () => {
                     if(state.canvas) {
-                        state.undoList.push(state.canvas.toDataURL());
                         context?.clearRect(0, 0, state.canvas.width, state.canvas?.height);
                         context?.drawImage(img, 0, 0, state.canvas.width, state.canvas?.height);
                     }
                 };
             }
-            console.log(state)
+            // console.log(state)
             return { ...state };
         };
 
